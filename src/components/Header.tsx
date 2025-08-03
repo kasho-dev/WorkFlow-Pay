@@ -1,13 +1,11 @@
 import React from 'react';
+import Logo from '../assets/WorkFlow+Pay icon.svg';
 
 const Header: React.FC = () => {
   return (
-    <header className="flex justify-between items-center p-6 bg-card rounded-lg mb-6">
+    <header className="flex justify-between items-center pb-6">
       <div className="flex items-center">
-        <h1 className="text-2xl font-bold text-white">
-          <span className="text-white">WorkFlow</span>
-          <span className="text-primary font-semibold text-xl">+Pay</span>
-        </h1>
+        <img src={Logo} alt="workflowpay" />
       </div>
       <div className="text-white">
         Welcome, User

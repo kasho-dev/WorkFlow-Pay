@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  onClick?: () => void;
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({ 
@@ -13,7 +13,9 @@ const Button: React.FC<ButtonProps> = ({
   onClick, 
   variant = 'primary', 
   size = 'md',
-  className = '' 
+  className = '',
+  disabled = false,
+  ...rest
 }) => {
   const baseClasses = 'rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary';
   
@@ -29,14 +31,20 @@ const Button: React.FC<ButtonProps> = ({
     lg: 'px-6 py-3 text-lg'
   };
 
+  const disabledClasses = 'opacity-50 cursor-not-allowed';
+
   return (
     <button
       onClick={onClick}
-      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      disabled={disabled}
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className} ${
+        disabled ? disabledClasses : ''
+      }`}
+      {...rest}
     >
       {children}
     </button>
   );
 };
 
-export default Button; 
+export default Button;
