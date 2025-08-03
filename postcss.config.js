@@ -1,10 +1,16 @@
-module.exports = {
+import postcssImport from 'postcss-import';
+import postcssNesting from 'postcss-nesting';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
+import postcssPresetEnv from 'postcss-preset-env';
+
+export default {
   plugins: [
-    require('postcss-import'),
-    require('tailwindcss/nesting')(require('postcss-nesting')),
-    require('tailwindcss'),
-    require('autoprefixer'),
-    require('postcss-preset-env')({
+    postcssImport,
+    postcssNesting,
+    tailwindcss,
+    autoprefixer,
+    postcssPresetEnv({
       features: { 'nesting-rules': false },
       browsers: 'last 2 versions',
     }),
